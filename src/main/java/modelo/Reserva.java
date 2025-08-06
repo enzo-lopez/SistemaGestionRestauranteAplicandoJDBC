@@ -1,7 +1,11 @@
 package modelo;
 
+import lombok.Getter;
+import lombok.Setter;
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 @Table(name="reserva")
 public class Reserva {
@@ -21,35 +25,4 @@ public class Reserva {
         this.numeroPersonas = numeroPersonas;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombreCliente() {
-        return nombreCliente;
-    }
-
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public int getNumeroPersonas() {
-        return numeroPersonas;
-    }
-
-    public void setNumeroPersonas(int numeroPersonas) {
-        this.numeroPersonas = numeroPersonas;
-    }
 }

@@ -1,9 +1,8 @@
 package negocio;
 
 import modelo.Reserva;
-import persistencia.dao.ReservaDaoImp;
+import persistencia.dao.IReservaDao;
 
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -11,17 +10,17 @@ import java.util.List;
 import excepciones.ReservaException;
 
 public class ReservaService {
-    private ReservaDaoImp reservaRepository;
+    private final IReservaDao reservaRepository;
     private static final int MAX_PERSONAS = 8;
     private static final int HORA_APERTURA = 12;
     private static final int HORA_CIERRE = 23;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-    public ReservaService(ReservaDaoImp reservaRepository) {
+    public ReservaService(IReservaDao reservaRepository) {
         this.reservaRepository = reservaRepository;
     }
 
-    public Reserva crearReserva(Reserva reserva) throws SQLException {
+    public Reserva crearReserva(Reserva reserva) throws Exception {
         // Validar cantidad de personas
         if (reserva.getNumeroPersonas() < 1 || reserva.getNumeroPersonas() > MAX_PERSONAS) {
             throw new ReservaException("La reserva debe ser para entre 1 y 8 personas.");
@@ -57,15 +56,15 @@ public class ReservaService {
         return reservaRepository.guardarReserva(reserva);
     }
 
-    public void cancelarReserva(Long id) throws SQLException {
+    public void cancelarReserva(Long id) throws Exception {
         reservaRepository.eliminarReserva(id);
     }
 
-    public List<Reserva> listarReservas() throws SQLException {
+    public List<Reserva> listarReservas() throws Exception {
         return reservaRepository.listarReservas();
     }
 
-    public List<Reserva> buscarReserva(String nombre) throws SQLException {
+    public List<Reserva> buscarReserva(String nombre) throws Exception {
         return reservaRepository.buscarReservaPorNombre(nombre);
     }
 }

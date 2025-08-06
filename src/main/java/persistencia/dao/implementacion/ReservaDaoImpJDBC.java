@@ -1,14 +1,14 @@
-package persistencia.dao;
+package persistencia.dao.implementacion;
 
 import modelo.Reserva;
-import persistencia.implementacion.IReservaDao;
+import persistencia.dao.IReservaDao;
 import persistencia.utils.ConexionMySQL;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReservaDaoImp implements IReservaDao {
+public class ReservaDaoImpJDBC implements IReservaDao {
 
     /*
     Connection conexion;

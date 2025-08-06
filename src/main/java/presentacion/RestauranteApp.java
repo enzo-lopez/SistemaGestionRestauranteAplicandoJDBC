@@ -2,7 +2,8 @@ package presentacion;
 
 import modelo.Reserva;
 import negocio.ReservaService;
-import persistencia.dao.ReservaDaoImp;
+import persistencia.dao.implementacion.ReservaDaoImpHibernate;
+import persistencia.dao.implementacion.ReservaDaoImpJDBC;
 import excepciones.ReservaException;
 
 import java.sql.SQLException;
@@ -13,7 +14,8 @@ import java.util.Scanner;
 public class RestauranteApp {
     public static void main(String[] args) throws SQLException {
         Scanner scanner = new Scanner(System.in);
-        ReservaService reservaService = new ReservaService(new ReservaDaoImp());
+        //ReservaService reservaService = new ReservaService(new ReservaDaoImpJDBC());
+        ReservaService reservaService = new ReservaService(new ReservaDaoImpHibernate());
         int opcion;
 
         do {
